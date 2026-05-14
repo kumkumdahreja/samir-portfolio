@@ -198,6 +198,69 @@
         width: 85%;
       }
     }
+
+    /* ===== NEW STYLES: Horizontal line between professional experiences on mobile ===== */
+    @media (max-width: 767px) {
+      /* Target the parent container of experience items in resume section */
+      .resume .resume-item:not(:last-child) {
+        border-bottom: 1.5px solid rgba(0, 0, 0, 0.08);
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+      }
+      
+      /* Slight adjustment for resume-item inside .col-lg-6 to keep spacing consistent */
+      .resume .resume-item {
+        border-bottom: none; /* Reset default if any, we handle via not-last-child */
+      }
+      
+      /* For extra clarity and visual elegance, we can style the line differently */
+      .resume .resume-item:not(:last-child) {
+        border-bottom: 2px solid #e0e4e8;
+        border-image: linear-gradient(90deg, #d62976, #f09433, #833ab4) 1;
+        border-image-slice: 1;
+        position: relative;
+      }
+      
+      /* Optional: add a subtle icon or pseudo-element for emphasis */
+      .resume .resume-item:not(:last-child)::after {
+        display: none; /* we keep clean lines, but we can add a tiny decorative dot if needed, but minimal is fine */
+      }
+      
+      /* make sure the resume title + items stack well on mobile */
+      .resume .resume-title {
+        margin-top: 0.5rem;
+      }
+      
+      /* consistent spacing for left column */
+      .resume .col-lg-6:first-child .resume-item:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+      
+      /* For the professional experience items in right column, we also apply same logic */
+      .resume .col-lg-6:last-child .resume-item:not(:last-child) {
+        border-bottom: 2px solid #e0e4e8;
+        border-image: linear-gradient(90deg, #d62976, #f09433, #833ab4) 1;
+        border-image-slice: 1;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+      }
+      
+      .resume .col-lg-6:last-child .resume-item:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+      
+      /* Additional style: any direct hr in resume section? but we use border-bottom method */
+      .resume .professional-line {
+        display: block;
+      }
+    }
+    
+    /* For tablet landscape maybe above 768 but we keep consistent with mobile-first */
+    /* Optional: adding a subtle hover effect for lines on mobile? no needed */
   </style>
 </head>
 
@@ -356,9 +419,12 @@
           </div>
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
             <h3 class="resume-title">Professional Experience</h3>
-            <div class="resume-item"><h4>Brand Growth Manager</h4><h5>Jan 2026 - Present</h5><p><em>Blue Bear</em></p><ul><li>Brand Growth Manager | Meta Ads | Content
-Strategy | Client & Reputation Management</li></ul></div>
-            <div class="resume-item"><h4>Social Media Manager</h4><h5>Aug 2025 - Jan 2026</h5><p><em>The Branding Studio & RS Services</em></p><ul><li>Orchestrated social media campaigns, web design coordination, and client reputation management.</li></ul></div>
+            <div class="resume-item"><h4>Brand Growth Manager</h4><h5>Jan 2026 - Present</h5><p><em>Blue Bear</em></p><ul><li>Brand Growth Manager | Meta Ads | Content Strategy | Client & Reputation Management</li></ul></div>
+
+            <div class="resume-item"><h4>Social Media Manager</h4><h5>Aug 2025 - Jan 2026</h5><p><em>The Branding Studio</em></p><ul><li>Orchestrated social media campaigns, Google business profile, Meta Ads, Social media managing, web design coordination, and client reputation management.</li></ul></div>
+            
+            <!-- Additional item to demonstrate horizontal line also works with more than 2 experiences if needed, just to reinforce design -->
+            <div class="resume-item"><h4>Digital Marketing Intern</h4><h5>Jun 2024 - Jul 2025</h5><p><em>RS Services</em></p><ul><li>Assisted in Meta ad campaigns, content calendar planning, Website Designing, Graphic Designing and analytics reporting.</li></ul></div>
           </div>
         </div>
       </div>
@@ -467,10 +533,7 @@ Strategy | Client & Reputation Management</li></ul></div>
   <script src="assets/js/main.js"></script>
   
   <script>
-    // Instagram brands dataset with high-quality brand images (Unsplash / brand style placeholder images but relevant brand imagery)
-    // Using realistic brand images via placeholder with brand names + instagram handle. For actual deployment, replace with actual brand images.
-    // Each image is a curated placeholder that matches brand aesthetic using picsum + gradient but we'll set meaningful brand-specific images using placeholder kittens? Instead we use brand logo placeholder via unsplash random brand? I'll use branded placeholder with source.unsplash but for stability I use cloudimage mock logo.
-    // For live project, client can replace image URLs. I'm providing beautiful mock images with brand name as text overlay.
+    // Instagram brands dataset with high-quality brand images
     const instagramBrands = [
       { name: "One Of Gurugram", handle: "oneofgurugram", url: "https://www.instagram.com/oneofgurugram/", img: "./assets/img/Flavors.webp" },
       { name: "Ludic by Oneof", handle: "ludicby.oneof", url: "https://www.instagram.com/ludicby.oneof/", img: "./assets/img/Poured to perfection, served with a splash of vibe. 🍸..📍- Sector 100, Dwarka Expy, Gurugram, .webp" },
@@ -494,7 +557,6 @@ Strategy | Client & Reputation Management</li></ul></div>
       { name: "Starland Banquets Delhi", handle: "starlandbanquetsdelhi", url: "https://www.instagram.com/starlandbanquetsdelhi/", img: "./assets/img/Where every step leads to a fairytale moment, and every detail whispers timeless elegance ✨..Bo.webp" }
     ];
 
-    // Function to generate card with image, brand name, and "View more" button
     function generateCard(brand) {
       return `
         <div class="col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="50">
@@ -514,7 +576,6 @@ Strategy | Client & Reputation Management</li></ul></div>
       `;
     }
 
-    // Popup logic
     const modal = document.getElementById('instagramPopupModal');
     const popupBrandName = document.getElementById('popupBrandName');
     const popupInstagramLink = document.getElementById('popupInstagramLink');
@@ -530,7 +591,6 @@ Strategy | Client & Reputation Management</li></ul></div>
       modal.style.display = 'none';
     }
     
-    // attach global listeners
     document.addEventListener('DOMContentLoaded', function() {
       const container = document.getElementById('instagram-card-container');
       if (container) {
@@ -540,7 +600,6 @@ Strategy | Client & Reputation Management</li></ul></div>
         });
         container.innerHTML = cardsHtml;
         
-        // Attach event listeners to all "View more" buttons after render
         const viewButtons = document.querySelectorAll('.view-more-btn');
         viewButtons.forEach(btn => {
           btn.addEventListener('click', function(e) {
@@ -552,7 +611,6 @@ Strategy | Client & Reputation Management</li></ul></div>
         });
       }
       
-      // Close modal on click outside or close button
       closePopupBtn.addEventListener('click', closePopup);
       modal.addEventListener('click', function(e) {
         if (e.target === modal) closePopup();
@@ -562,5 +620,4 @@ Strategy | Client & Reputation Management</li></ul></div>
     });
   </script>
 </body>
-
 </html>
