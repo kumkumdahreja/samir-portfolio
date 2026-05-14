@@ -26,7 +26,179 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
-
+  
+  <style>
+    /* Additional custom styles for Instagram card grid */
+    .instagram-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #ffffff;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    .instagram-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.12);
+    }
+    /* Card image wrapper with consistent aspect ratio and brand image styling */
+    .card-img-wrapper {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background: linear-gradient(145deg, #f0f2f5, #e4e8ed);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .brand-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .instagram-card:hover .brand-image {
+      transform: scale(1.03);
+    }
+    /* fallback icon if image fails to load */
+    .img-fallback-icon {
+      font-size: 56px;
+      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+    }
+    .instagram-card .card-body {
+      text-align: center;
+      padding: 1.2rem 1rem 1.4rem;
+      background: #fff;
+    }
+    .instagram-card .brand-name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      font-family: 'Poppins', sans-serif;
+      color: #1e2a3e;
+      letter-spacing: -0.2px;
+    }
+    .instagram-handle {
+      font-size: 0.8rem;
+      color: #6c757d;
+      margin-bottom: 1rem;
+      word-break: break-word;
+    }
+    .btn-instagram-popup {
+      background: linear-gradient(105deg, #f09433 0%, #d62976 40%, #962fbf 80%);
+      border: none;
+      color: white;
+      border-radius: 50px;
+      padding: 0.5rem 1.2rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+    .btn-instagram-popup:hover {
+      opacity: 0.92;
+      transform: translateY(-2px);
+      color: white;
+      box-shadow: 0 8px 18px rgba(214, 41, 118, 0.3);
+    }
+    .portfolio-section-grid {
+      padding: 30px 0 20px;
+    }
+    /* modal / popup style for instagram embed */
+    .instagram-popup-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(6px);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.2s ease;
+    }
+    .popup-content {
+      background: #fff;
+      width: 90%;
+      max-width: 420px;
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      animation: slideUp 0.25s ease;
+      text-align: center;
+    }
+    .popup-header {
+      background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+      padding: 1rem;
+      color: white;
+      font-weight: 600;
+      font-size: 1.1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .popup-header span {
+      cursor: pointer;
+      font-size: 1.6rem;
+      line-height: 1;
+      padding: 0 8px;
+      transition: opacity 0.2s;
+    }
+    .popup-header span:hover {
+      opacity: 0.8;
+    }
+    .popup-body {
+      padding: 1.5rem 1rem 1.8rem;
+    }
+    .popup-body p {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      color: #2c3e50;
+    }
+    .popup-instagram-btn {
+      background: #000;
+      color: white;
+      border-radius: 40px;
+      padding: 0.7rem 1.4rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    .popup-instagram-btn:hover {
+      background: #1e1e2f;
+      color: white;
+      transform: scale(1.02);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @media (max-width: 768px) {
+      .popup-content {
+        width: 85%;
+      }
+    }
+  </style>
 </head>
 
 <body class="index-page">
@@ -43,8 +215,8 @@
     </a>
 
     <div class="social-links text-center">
-      <a href="https://www.instagram.com/woksingh_jalandhar/" target="_blank" class="instagram"><i class="bi bi-instagram"></i></a>
-      <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+      <a href="https://www.instagram.com/sam.ir.x/" target="_blank" class="instagram"><i class="bi bi-instagram"></i></a>
+      <a href="https://www.linkedin.com/in/samir-bhatia-a72aa4319" class="linkedin"><i class="bi bi-linkedin"></i></a>
       <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
     </div>
 
@@ -65,39 +237,31 @@
 
     <!-- Hero Section -->
     <section id="hero" class="hero section dark-background">
-
-      <img src="assets/img/hero-bg.jpg" alt="Social Media Management Background" data-aos="fade-in" class="">
-
+      <img src="assets/img/hero-bg.jpeg" alt="Social Media Management Background" data-aos="fade-in" class="">
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <h2>Samir Bhatia</h2>
-        <p>I'm a <span class="typed" data-typed-items="Social Media Manager, Content Strategist, Meta Ads Specialist, Brand Growth Expert">Social Media Manager</span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
+        <p>I'm a <span class="typed" data-typed-items="Social Media Manager, Content Strategist, Meta Ads Specialist, Brand Growth Expert">Social Media Manager</span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
       </div>
-
-    </section><!-- /Hero Section -->
+    </section>
 
     <!-- About Section -->
     <section id="about" class="about section">
-
       <div class="container section-title" data-aos="fade-up">
         <h2>About</h2>
         <p>A dynamic digital communicator with a passion for turning brands into conversations. I blend creativity with strategic thinking to craft compelling campaigns, strengthen brand presence, and drive measurable audience engagement across platforms.</p>
-      </div><!-- End Section Title -->
-
+      </div>
       <div class="container" data-aos="fade-up" data-aos-delay="100">
-
         <div class="row gy-4 justify-content-center">
           <div class="col-lg-4">
             <img src="assets/img/my-profile-img.jpg" class="img-fluid" alt="Samir Bhatia">
           </div>
           <div class="col-lg-8 content">
             <h2>Social Media Manager &amp; Digital Marketing Specialist.</h2>
-            <p class="fst-italic py-3">
-              Based in Ghaziabad, Uttar Pradesh, I specialize in driving brand growth through data-driven social strategies, compelling content, and high-impact ad campaigns.
-            </p>
+            <p class="fst-italic py-3">Based in Ghaziabad, Uttar Pradesh, I specialize in driving brand growth through data-driven social strategies, compelling content, and high-impact ad campaigns.</p>
             <div class="row">
               <div class="col-lg-6">
                 <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>1995</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>2001</span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span>www.samirbhatiatrading.com</span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+91 98217 22397</span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>Ghaziabad, India</span></li>
@@ -105,30 +269,23 @@
               </div>
               <div class="col-lg-6">
                 <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>28</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>25</span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>UG Diploma (Digital Marketing)</span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>samirbhatia684@gmail.com</span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>Available</span></li>
                 </ul>
               </div>
             </div>
-            <p class="py-3">
-              With a strong command over content planning, analytics, and social trends, I align digital initiatives with business goals to deliver consistent growth. Backed by a results-driven mindset, I'm ready to elevate brands to new digital heights.
-            </p>
+            <p class="py-3">With a strong command over content planning, analytics, and social trends, I align digital initiatives with business goals to deliver consistent growth.</p>
           </div>
         </div>
-
       </div>
+    </section>
 
-    </section><!-- /About Section -->
-
-    <!-- Stats Section with Real Data from Wok Singh -->
+    <!-- Stats Section -->
     <section id="stats" class="stats section">
-
       <div class="container" data-aos="fade-up" data-aos-delay="100">
-
         <div class="row gy-4">
-
           <div class="col-lg-3 col-md-6">
             <div class="stats-item">
               <i class="bi bi-instagram"></i>
@@ -136,7 +293,6 @@
               <p><strong>Followers</strong> <span>on Instagram</span></p>
             </div>
           </div>
-
           <div class="col-lg-3 col-md-6">
             <div class="stats-item">
               <i class="bi bi-eye-fill"></i>
@@ -144,7 +300,6 @@
               <p><strong>Accounts Reached</strong> <span>Last 90 days</span></p>
             </div>
           </div>
-
           <div class="col-lg-3 col-md-6">
             <div class="stats-item">
               <i class="bi bi-graph-up"></i>
@@ -152,7 +307,6 @@
               <p><strong>Growth Rate</strong> <span>+305.9% Views</span></p>
             </div>
           </div>
-
           <div class="col-lg-3 col-md-6">
             <div class="stats-item">
               <i class="bi bi-play-btn"></i>
@@ -160,439 +314,143 @@
               <p><strong>Reel Views</strong> <span>Top Performing Ad</span></p>
             </div>
           </div>
-
         </div>
-
       </div>
-
-    </section><!-- /Stats Section -->
+    </section>
 
     <!-- Skills Section -->
     <section id="skills" class="skills section light-background">
-
       <div class="container section-title" data-aos="fade-up">
         <h2>Skills &amp; Expertise</h2>
         <p>Mastery across creative, analytical, and strategic tools to drive brand success.</p>
       </div>
-
       <div class="container" data-aos="fade-up" data-aos-delay="100">
-
         <div class="row skills-content skills-animation">
-
           <div class="col-lg-6">
-
-            <div class="progress">
-              <span class="skill"><span>Content Strategy & Planning</span> <i class="val">95%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill"><span>Meta Ads Manager</span> <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill"><span>Canva & Adobe Photoshop</span> <i class="val">88%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
+            <div class="progress"><span class="skill"><span>Content Strategy & Planning</span> <i class="val">95%</i></span><div class="progress-bar-wrap"><div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div></div></div>
+            <div class="progress"><span class="skill"><span>Meta Ads Manager</span> <i class="val">90%</i></span><div class="progress-bar-wrap"><div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div></div></div>
+            <div class="progress"><span class="skill"><span>Canva & Adobe Photoshop</span> <i class="val">88%</i></span><div class="progress-bar-wrap"><div class="progress-bar" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"></div></div></div>
           </div>
-
           <div class="col-lg-6">
-
-            <div class="progress">
-              <span class="skill"><span>Analytics & Reporting</span> <i class="val">85%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill"><span>Hootsuite / Buffer</span> <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill"><span>CapCut Video Editing</span> <i class="val">85%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
+            <div class="progress"><span class="skill"><span>Analytics & Reporting</span> <i class="val">85%</i></span><div class="progress-bar-wrap"><div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div></div></div>
+            <div class="progress"><span class="skill"><span>Hootsuite / Buffer</span> <i class="val">90%</i></span><div class="progress-bar-wrap"><div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div></div></div>
+            <div class="progress"><span class="skill"><span>CapCut Video Editing</span> <i class="val">85%</i></span><div class="progress-bar-wrap"><div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div></div></div>
           </div>
-
         </div>
-
       </div>
+    </section>
 
-    </section><!-- /Skills Section -->
-
-    <!-- Resume Section (Updated with Samir's credentials) -->
+    <!-- Resume Section -->
     <section id="resume" class="resume section">
-
       <div class="container section-title" data-aos="fade-up">
         <h2>Resume</h2>
-        <p>Proven track record in elevating brand presence, driving engagement, and delivering data-backed social media results for lifestyle and hospitality brands.</p>
+        <p>Proven track record in elevating brand presence, driving engagement, and delivering data-backed social media results.</p>
       </div>
-
       <div class="container">
-
         <div class="row">
-
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
             <h3 class="resume-title">Summary</h3>
-
-            <div class="resume-item pb-0">
-              <h4>Samir Bhatia</h4>
-              <p><em>Certified Digital Marketing professional with hands-on experience in managing comprehensive social media campaigns, content creation, and brand growth strategy. Successfully grew @woksingh_jalandhar by 41% followers with over 1.1M+ views on a single reel campaign.</em></p>
-              <ul>
-                <li>Ghaziabad, Uttar Pradesh</li>
-                <li>+91 98217 22397</li>
-                <li>samirbhatia684@gmail.com</li>
-              </ul>
-            </div>
-
+            <div class="resume-item pb-0"><h4>Samir Bhatia</h4><p><em>Certified Digital Marketing professional with hands-on experience in managing comprehensive social media campaigns, content creation, and brand growth strategy.</em></p><ul><li>Ghaziabad, Uttar Pradesh</li><li>+91 98217 22397</li><li>samirbhatia684@gmail.com</li></ul></div>
             <h3 class="resume-title">Education</h3>
-            <div class="resume-item">
-              <h4>UG Diploma in Digital Marketing</h4>
-              <h5>2023 - 2024</h5>
-              <p><em>Asian Academy of Film & Television (AAFT), Noida</em></p>
-              <p>Specialized in Social Media Optimization, Meta Ads, Content Strategy, and Analytics. Completed hands-on projects for fashion & lifestyle brands.</p>
-            </div>
-
-            <div class="resume-item">
-              <h4>Intermediate (12th) & High School (10th)</h4>
-              <h5>2021 - 2023</h5>
-              <p><em>National Institute of Open Schooling</em></p>
-              <p>Foundation in business studies and communication.</p>
-            </div>
+            <div class="resume-item"><h4>UG Diploma in Digital Marketing</h4><h5>2023 - 2024</h5><p><em>Asian Academy of Film & Television (AAFT), Noida</em></p><p>Specialized in Social Media Optimization, Meta Ads, Content Strategy.</p></div>
           </div>
-
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
             <h3 class="resume-title">Professional Experience</h3>
-            <div class="resume-item">
-              <h4>Brand Growth Manager (Freelance)</h4>
-              <h5>Jan 2026 - Present</h5>
-              <p><em>Blue Bear / Wok Singh Jalandhar</em></p>
-              <ul>
-                <li>Developed and executed a complete Pan-Asian brand strategy, increasing Instagram followers by 41% (4,584 total) in 90 days.</li>
-                <li>Generated 797K+ accounts reached and 329.1K views in 30 days through targeted content and Meta Ads.</li>
-                <li>Directed a reel campaign that achieved 1.1M+ views and 2.4K+ interactions, boosting profile activity by 363.</li>
-                <li>Managed end-to-end content calendar, influencer collaborations, and reputation management on Zomato & Google.</li>
-              </ul>
-            </div>
-
-            <div class="resume-item">
-              <h4>Social Media Manager</h4>
-              <h5>Aug 2025 - Jan 2026</h5>
-              <p><em>The Branding Studio & RS Services</em></p>
-              <ul>
-                <li>Orchestrated social media campaigns, web design coordination, and client reputation management.</li>
-                <li>Boosted engagement by implementing data-driven posting schedules and interactive content formats.</li>
-              </ul>
-            </div>
-
-            <div class="resume-item">
-              <h4>Content Creator - Fashion Week</h4>
-              <h5>Aug 2024 - Sep 2024</h5>
-              <p><em>AAFT 8th Fashion & Design Week / Global Fashion Week</em></p>
-              <ul>
-                <li>Spearheaded a successful promotional campaign on social media, resulting in increased event visibility and attendee engagement.</li>
-              </ul>
-            </div>
+            <div class="resume-item"><h4>Brand Growth Manager (Freelance)</h4><h5>Jan 2026 - Present</h5><p><em>Blue Bear / Wok Singh Jalandhar</em></p><ul><li>Increased Instagram followers by 41% (4,584 total) in 90 days.</li><li>Generated 797K+ accounts reached through targeted content and Meta Ads.</li><li>Directed a reel campaign that achieved 1.1M+ views.</li></ul></div>
+            <div class="resume-item"><h4>Social Media Manager</h4><h5>Aug 2025 - Jan 2026</h5><p><em>The Branding Studio & RS Services</em></p><ul><li>Orchestrated social media campaigns, web design coordination, and client reputation management.</li></ul></div>
           </div>
-
         </div>
-
       </div>
+    </section>
 
-    </section><!-- /Resume Section -->
-
-    <!-- Portfolio Section (Wok Singh Campaign Highlights) -->
+    <!-- PORTFOLIO SECTION - Instagram cards with images, brand name, and view more popup -->
     <section id="portfolio" class="portfolio section light-background">
-
       <div class="container section-title" data-aos="fade-up">
         <h2>Portfolio</h2>
-        <p>Featured work: Social media transformation & high-impact campaigns for Wok Singh - Pan Asian Restaurant.</p>
+        <p>Explore brands I've managed or collaborated with. Each card includes a brand image, name, and a "View more" pop-up to Instagram.</p>
       </div>
 
-      <div class="container">
-
-        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
-
-          <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-            <li data-filter="*" class="filter-active">All Projects</li>
-            <li data-filter=".filter-branding">Brand Strategy</li>
-            <li data-filter=".filter-product">Ad Campaigns</li>
-            <li data-filter=".filter-app">Content Creative</li>
-          </ul>
-
-          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/branding-1.jpg" class="img-fluid" alt="Wok Singh Brand Strategy">
-                <div class="portfolio-info">
-                  <h4>Wok Singh Rebrand</h4>
-                  <p>Pan-Asian Premium Positioning</p>
-                  <a href="assets/img/portfolio/branding-1.jpg" title="Brand Strategy" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/product-1.jpg" class="img-fluid" alt="Meta Ad Results">
-                <div class="portfolio-info">
-                  <h4>Meta Ad Campaign</h4>
-                  <p>135K+ Views | 335 Profile Visits</p>
-                  <a href="assets/img/portfolio/product-1.jpg" title="Ad Performance" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/app-1.jpg" class="img-fluid" alt="Content Calendar">
-                <div class="portfolio-info">
-                  <h4>Content Calendar</h4>
-                  <p>Strategic Planning & Scheduling</p>
-                  <a href="assets/img/portfolio/app-1.jpg" title="Content Strategy" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/branding-2.jpg" class="img-fluid" alt="Follower Growth">
-                <div class="portfolio-info">
-                  <h4>Follower Growth</h4>
-                  <p>+41% in 90 days | 4,584 Followers</p>
-                  <a href="assets/img/portfolio/branding-2.jpg" title="Growth Metrics" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/product-2.jpg" class="img-fluid" alt="Viral Reel">
-                <div class="portfolio-info">
-                  <h4>Viral Reel Campaign</h4>
-                  <p>1.1M+ Views | 2,471 Interactions</p>
-                  <a href="assets/img/portfolio/product-2.jpg" title="Reel Insights" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/books-1.jpg" class="img-fluid" alt="Creative Visuals">
-                <div class="portfolio-info">
-                  <h4>Aesthetic Food Shots</h4>
-                  <p>Sophistication in a Glass</p>
-                  <a href="assets/img/portfolio/books-1.jpg" title="Visual Content" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
+      <div class="container portfolio-section-grid" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-4" id="instagram-card-container">
+          <!-- Cards will be injected with JavaScript, each containing image, brand name, and pop-up trigger -->
         </div>
-
       </div>
-
-    </section><!-- /Portfolio Section -->
+    </section>
 
     <!-- Services Section -->
     <section id="services" class="services section">
-
       <div class="container section-title" data-aos="fade-up">
         <h2>Services</h2>
         <p>Comprehensive social media and digital marketing solutions tailored to elevate your brand.</p>
       </div>
-
       <div class="container">
-
         <div class="row gy-4">
-
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="100">
-            <div class="icon flex-shrink-0"><i class="bi bi-briefcase"></i></div>
-            <div>
-              <h4 class="title"><a href="#" class="stretched-link">Social Media Management</a></h4>
-              <p class="description">End-to-end management of Instagram, Facebook, and Google My Business. Content calendaring, community engagement, and reputation monitoring.</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon flex-shrink-0"><i class="bi bi-bar-chart"></i></div>
-            <div>
-              <h4 class="title"><a href="#" class="stretched-link">Meta Ads & Campaigns</a></h4>
-              <p class="description">Data-driven ad strategies targeting the right audience. From budget planning to creative and performance analysis, maximize ROI.</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="300">
-            <div class="icon flex-shrink-0"><i class="bi bi-palette"></i></div>
-            <div>
-              <h4 class="title"><a href="#" class="stretched-link">Content Creation</a></h4>
-              <p class="description">Premium visuals, reels, stories, and copywriting. Canva, Adobe Photoshop, and CapCut expertise to produce scroll-stopping content.</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="400">
-            <div class="icon flex-shrink-0"><i class="bi bi-graph-up"></i></div>
-            <div>
-              <h4 class="title"><a href="#" class="stretched-link">Analytics & Reporting</a></h4>
-              <p class="description">Weekly and monthly performance reports. Audience insights, growth tracking, and actionable recommendations to scale your brand.</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="500">
-            <div class="icon flex-shrink-0"><i class="bi bi-megaphone"></i></div>
-            <div>
-              <h4 class="title"><a href="#" class="stretched-link">Influencer Marketing</a></h4>
-              <p class="description">Strategic collaborations with lifestyle and food influencers to amplify brand reach and credibility.</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="600">
-            <div class="icon flex-shrink-0"><i class="bi bi-shop"></i></div>
-            <div>
-              <h4 class="title"><a href="#" class="stretched-link">Brand Reputation Management</a></h4>
-              <p class="description">Monitoring and responding to reviews on Zomato, Google, and social platforms. Building a positive brand image and trust.</p>
-            </div>
-          </div>
-
+          <div class="col-lg-4 col-md-6 service-item d-flex"><div class="icon flex-shrink-0"><i class="bi bi-briefcase"></i></div><div><h4 class="title">Social Media Management</h4><p class="description">End-to-end management of Instagram, Facebook, and Google My Business.</p></div></div>
+          <div class="col-lg-4 col-md-6 service-item d-flex"><div class="icon flex-shrink-0"><i class="bi bi-bar-chart"></i></div><div><h4 class="title">Meta Ads & Campaigns</h4><p class="description">Data-driven ad strategies targeting the right audience. Maximize ROI.</p></div></div>
+          <div class="col-lg-4 col-md-6 service-item d-flex"><div class="icon flex-shrink-0"><i class="bi bi-palette"></i></div><div><h4 class="title">Content Creation</h4><p class="description">Premium visuals, reels, stories, and copywriting.</p></div></div>
+          <div class="col-lg-4 col-md-6 service-item d-flex"><div class="icon flex-shrink-0"><i class="bi bi-graph-up"></i></div><div><h4 class="title">Analytics & Reporting</h4><p class="description">Weekly/monthly performance reports, actionable recommendations.</p></div></div>
+          <div class="col-lg-4 col-md-6 service-item d-flex"><div class="icon flex-shrink-0"><i class="bi bi-megaphone"></i></div><div><h4 class="title">Influencer Marketing</h4><p class="description">Strategic collaborations to amplify brand reach and credibility.</p></div></div>
+          <div class="col-lg-4 col-md-6 service-item d-flex"><div class="icon flex-shrink-0"><i class="bi bi-shop"></i></div><div><h4 class="title">Brand Reputation Management</h4><p class="description">Monitoring reviews on Zomato, Google, and social platforms.</p></div></div>
         </div>
-
       </div>
-
-    </section><!-- /Services Section -->
+    </section>
 
     <!-- Contact Section -->
     <section id="contact" class="contact section">
-
       <div class="container section-title" data-aos="fade-up">
         <h2>Contact</h2>
-        <p>Let's discuss how I can help elevate your brand's digital presence. Reach out for collaborations or inquiries.</p>
+        <p>Let's discuss how I can help elevate your brand's digital presence.</p>
       </div>
-
       <div class="container" data-aos="fade-up" data-aos-delay="100">
-
         <div class="row gy-4">
-
           <div class="col-lg-5">
-
             <div class="info-wrap">
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
-                <i class="bi bi-geo-alt flex-shrink-0"></i>
-                <div>
-                  <h3>Location</h3>
-                  <p>Ghaziabad, Uttar Pradesh, India</p>
-                </div>
-              </div>
-
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
-                <i class="bi bi-telephone flex-shrink-0"></i>
-                <div>
-                  <h3>Call/WhatsApp</h3>
-                  <p>+91 98217 22397</p>
-                </div>
-              </div>
-
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
-                <i class="bi bi-envelope flex-shrink-0"></i>
-                <div>
-                  <h3>Email</h3>
-                  <p>samirbhatia684@gmail.com</p>
-                </div>
-              </div>
-
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="500">
-                <i class="bi bi-globe"></i>
-                <div>
-                  <h3>Website</h3>
-                  <p>www.samirbhatiatrading.com</p>
-                </div>
-              </div>
+              <div class="info-item d-flex"><i class="bi bi-geo-alt flex-shrink-0"></i><div><h3>Location</h3><p>Ghaziabad, Uttar Pradesh, India</p></div></div>
+              <div class="info-item d-flex"><i class="bi bi-telephone flex-shrink-0"></i><div><h3>Call/WhatsApp</h3><p>+91 98217 22397</p></div></div>
+              <div class="info-item d-flex"><i class="bi bi-envelope flex-shrink-0"></i><div><h3>Email</h3><p>samirbhatia684@gmail.com</p></div></div>
             </div>
           </div>
-
           <div class="col-lg-7">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+            <form action="forms/contact.php" method="post" class="php-email-form">
               <div class="row gy-4">
-
-                <div class="col-md-6">
-                  <label for="name-field" class="pb-2">Your Name</label>
-                  <input type="text" name="name" id="name-field" class="form-control" required="">
-                </div>
-
-                <div class="col-md-6">
-                  <label for="email-field" class="pb-2">Your Email</label>
-                  <input type="email" class="form-control" name="email" id="email-field" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <label for="subject-field" class="pb-2">Subject</label>
-                  <input type="text" class="form-control" name="subject" id="subject-field" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <label for="message-field" class="pb-2">Message</label>
-                  <textarea class="form-control" name="message" rows="10" id="message-field" required=""></textarea>
-                </div>
-
-                <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                  <button type="submit">Send Message</button>
-                </div>
-
+                <div class="col-md-6"><label class="pb-2">Your Name</label><input type="text" name="name" class="form-control" required></div>
+                <div class="col-md-6"><label class="pb-2">Your Email</label><input type="email" class="form-control" name="email" required></div>
+                <div class="col-md-12"><label class="pb-2">Subject</label><input type="text" class="form-control" name="subject" required></div>
+                <div class="col-md-12"><label class="pb-2">Message</label><textarea class="form-control" name="message" rows="6" required></textarea></div>
+                <div class="col-md-12 text-center"><div class="loading">Loading</div><div class="error-message"></div><div class="sent-message">Your message has been sent. Thank you!</div><button type="submit">Send Message</button></div>
               </div>
             </form>
           </div>
-
         </div>
-
       </div>
-
-    </section><!-- /Contact Section -->
+    </section>
 
   </main>
 
   <footer id="footer" class="footer position-relative light-background">
-
     <div class="container">
-      <div class="copyright text-center ">
-        <p>© <span>Copyright</span> <strong class="px-1 sitename">Samir Bhatia</strong> <span>All Rights Reserved</span></p>
-      </div>
-      <div class="credits">
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> | Customized for Samir Bhatia
-      </div>
+      <div class="copyright text-center"><p>© <span>Copyright</span> <strong class="px-1 sitename">Samir Bhatia</strong> <span>All Rights Reserved</span></p></div>
+      <div class="credits">Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> | Customized for Samir Bhatia</div>
     </div>
-
   </footer>
 
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <!-- Instagram popup modal structure -->
+  <div id="instagramPopupModal" class="instagram-popup-modal">
+    <div class="popup-content">
+      <div class="popup-header">
+        <span>🔗 Open Instagram</span>
+        <span id="closePopupBtn">&times;</span>
+      </div>
+      <div class="popup-body">
+        <p>Visit <strong id="popupBrandName"></strong> on Instagram</p>
+        <a href="#" id="popupInstagramLink" class="popup-instagram-btn" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-instagram"></i> Open Instagram Page
+        </a>
+      </div>
+    </div>
+  </div>
 
-  <!-- Preloader -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
   <div id="preloader"></div>
 
   <!-- Vendor JS Files -->
@@ -601,15 +459,107 @@
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/typed.js/typed.umd.js"></script>
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-
-  <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+  
+  <script>
+    // Instagram brands dataset with high-quality brand images (Unsplash / brand style placeholder images but relevant brand imagery)
+    // Using realistic brand images via placeholder with brand names + instagram handle. For actual deployment, replace with actual brand images.
+    // Each image is a curated placeholder that matches brand aesthetic using picsum + gradient but we'll set meaningful brand-specific images using placeholder kittens? Instead we use brand logo placeholder via unsplash random brand? I'll use branded placeholder with source.unsplash but for stability I use cloudimage mock logo.
+    // For live project, client can replace image URLs. I'm providing beautiful mock images with brand name as text overlay.
+    const instagramBrands = [
+      { name: "One Of Gurugram", handle: "oneofgurugram", url: "https://www.instagram.com/oneofgurugram/", img: "./assets/img/Flavors you’ll remember, ambience you’ll never forget..For more info-- +919599758003, 959976800.webp" },
+      { name: "Ludic by Oneof", handle: "ludicby.oneof", url: "https://www.instagram.com/ludicby.oneof/", img: "./assets/img/Poured to perfection, served with a splash of vibe. 🍸..📍- Sector 100, Dwarka Expy, Gurugram, .webp" },
+      { name: "Aagaz Official", handle: "aagazofficial_", url: "https://www.instagram.com/aagazofficial_/", img: "./assets/img/From flavours to cocktails to the vibe, everything you’ve been craving, all in one place! .For .webp" },
+      { name: "Five Elements Hotels", handle: "fiveelementshotels", url: "https://www.instagram.com/fiveelementshotels/", img: "./assets/img/Your perfect retreat awaits! Discover unparalleled comfort and world-class service. Every detai.webp" },
+      { name: "The Mirage Nightclub", handle: "themiragenightclub", url: "https://www.instagram.com/themiragenightclub/", img: "./assets/img/📸 Moments that shine, memories that last!From killer vibes to iconic clicks, the best nights ar.jpg.jpeg" },
+      { name: "Arya Tatan CR", handle: "aryatatancr", url: "https://www.instagram.com/aryatatancr/", img: "./assets/img/You’re this close to changing your weekend plans. 🚗Hit the road with power, style, and adventu.webp" },
+      { name: "Jalsa Golf Course", handle: "jalsagolfcourse", url: "https://www.instagram.com/jalsagolfcourse/", img: "./assets/img/Where warm lights, cozy corners, and good vibes come together for the perfect dine-in experienc.webp" },
+      { name: "Jalsa Galleria Gurgaon", handle: "jalsagalleriagurgaon", url: "https://www.instagram.com/jalsagalleriagurgaon/", img: "./assets/img/Where cozy lights, warm vibes, and great conversations come together. ✨🍽️Step in, unwind, and .webp" },
+      { name: "Wok Singh Jalandhar", handle: "woksingh_jalandhar", url: "https://www.instagram.com/woksingh_jalandhar/", img: "./assets/img/Where warm lights, fine pours & great conversations come together. ✨🍷Pull up a chair, your per.webp" },
+      { name: "Moets Elan Epic", handle: "moets.elan_epic", url: "https://www.instagram.com/moets.elan_epic/", img: "./assets/img/Experience the legacy — where every corner tells a story, and every evening feels timeless.jpeg" },
+      { name: "Healin Health", handle: "healin.health", url: "https://www.instagram.com/healin.health/", img: "./assets/img/IMG_1923.jpg" },
+      { name: "The Branding Studio", handle: "thebrandingstudio.in", url: "https://www.instagram.com/thebrandingstudio.in/", img: "./assets/img/IMG_1487.jpg" },
+      { name: "Kulcha Culture Delhi", handle: "kulchakulture_delhi", url: "https://www.instagram.com/kulchakulture_delhi/", img: "./assets/img/Where every corner serves comfort before the food even arrives ✨Warm lights, earthy tones, and .heic.jpeg" },
+      { name: "Nutriherbs", handle: "in.nutriherbs", url: "https://www.instagram.com/in.nutriherbs/", img: "./assets/img/✨ Say goodbye to dull skin! ✨Nutriherbs Skin Glow Tablets with herbal collagen, L-Glutathione, a.jpg.jpeg" },
+      { name: "70 Milestone Samalkha", handle: "70milestone_samalkha", url: "https://www.instagram.com/70milestone_samalkha/", img: "./assets/img/A dining escape sculpted for tranquil indulgence and seamless serenity..📍 GT ROAD, SAMALKHA, PA.jpg.jpeg" },
+      { name: "Fume Lounge", handle: "fumeloungeandrestaurant", url: "https://www.instagram.com/fumeloungeandrestaurant/", img: "./assets/img/WhatsApp Image 2026-05-14 at 17.37.20.jpeg" },
+      { name: "The Palm Burj", handle: "thepalmburj", url: "https://www.instagram.com/thepalmburj/", img: "./assets/img/Where elegance meets elevation — welcome to PalmBurj, your sky-high escape for luxe evenings, lu.jpg.jpeg" },
+      { name: "Raas Pattaya", handle: "raas_pattaya", url: "https://www.instagram.com/raas_pattaya/", img: "./assets/img/Raas nights hitting different in Pattaya 🌴🔥 Twirling to desi beats all the way from India to T.jpg.jpeg" },
+      { name: "Jalsa Galleria R2", handle: "jalsagalleriar2", url: "https://www.instagram.com/jalsagalleriar2/", img: "./assets/img/Experience exceptional flavours, unforgettable vibes, and a dining experience like never before.webp" },
+      { name: "Starland Banquets Delhi", handle: "starlandbanquetsdelhi", url: "https://www.instagram.com/starlandbanquetsdelhi/", img: "./assets/img/Where every step leads to a fairytale moment, and every detail whispers timeless elegance ✨..Bo.webp" }
+    ];
 
+    // Function to generate card with image, brand name, and "View more" button
+    function generateCard(brand) {
+      return `
+        <div class="col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="50">
+          <div class="instagram-card">
+            <div class="card-img-wrapper">
+              <img class="brand-image" src="${brand.img}" alt="${brand.name}" loading="lazy" onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\'bi bi-instagram img-fallback-icon\'></i>';">
+            </div>
+            <div class="card-body">
+              <div class="brand-name">${brand.name}</div>
+              <div class="instagram-handle">@${brand.handle}</div>
+              <button class="btn btn-instagram-popup view-more-btn" data-url="${brand.url}" data-name="${brand.name}">
+                <i class="bi bi-eye-fill"></i> View more
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Popup logic
+    const modal = document.getElementById('instagramPopupModal');
+    const popupBrandName = document.getElementById('popupBrandName');
+    const popupInstagramLink = document.getElementById('popupInstagramLink');
+    const closePopupBtn = document.getElementById('closePopupBtn');
+    
+    function openPopup(brandUrl, brandName) {
+      popupBrandName.innerText = brandName;
+      popupInstagramLink.href = brandUrl;
+      modal.style.display = 'flex';
+    }
+    
+    function closePopup() {
+      modal.style.display = 'none';
+    }
+    
+    // attach global listeners
+    document.addEventListener('DOMContentLoaded', function() {
+      const container = document.getElementById('instagram-card-container');
+      if (container) {
+        let cardsHtml = '';
+        instagramBrands.forEach(brand => {
+          cardsHtml += generateCard(brand);
+        });
+        container.innerHTML = cardsHtml;
+        
+        // Attach event listeners to all "View more" buttons after render
+        const viewButtons = document.querySelectorAll('.view-more-btn');
+        viewButtons.forEach(btn => {
+          btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const url = this.getAttribute('data-url');
+            const name = this.getAttribute('data-name');
+            openPopup(url, name);
+          });
+        });
+      }
+      
+      // Close modal on click outside or close button
+      closePopupBtn.addEventListener('click', closePopup);
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) closePopup();
+      });
+      
+      if (typeof AOS !== 'undefined') AOS.refresh();
+    });
+  </script>
 </body>
 
 </html>
